@@ -22,6 +22,8 @@ import java.util.List;
 
 public class Camera {
 
+    private final String imageDirectory = "src/main/resources/";
+
     private final int FPS;
 
     private final FrameGrabber grabber;
@@ -102,7 +104,7 @@ public class Camera {
 
     public void saveImage(BufferedImage b, String fileName) {
         try {
-            ImageIO.write(b, "PNG", new File("src/imgrecognition/images/" + fileName));
+            ImageIO.write(b, "PNG", new File(imageDirectory + fileName));
         } catch (Exception e) {
             System.out.println("WRITE IMAGE FAILED!! " + fileName);
             e.printStackTrace();
@@ -148,7 +150,10 @@ public class Camera {
             int bwThresholdQR = 180;
 
             MatOfPoint2f src = new MatOfPoint2f(sortedPoints[0], sortedPoints[1], sortedPoints[2], sortedPoints[3]);
-            MatOfPoint2f dst = new MatOfPoint2f(new Point(0, 0), new Point(imgSize - 1, 0), new Point(0, imgSize - 1),
+            MatOfPoint2f dst = new MatOfPoint2f(
+                    new Point(0, 0),
+                    new Point(imgSize - 1, 0),
+                    new Point(0, imgSize - 1),
                     new Point(imgSize - 1, imgSize - 1));
 
             Mat warpMat = Imgproc.getPerspectiveTransform(src, dst);
@@ -301,7 +306,7 @@ public class Camera {
      * The value of the output pixel is the maximum value of all pixels in the
      * neighborhood. In a binary image, a pixel is set to 1 if any of the
      * neighboring pixels have the value 1.
-     * 
+     * <p>
      * Morphological dilation makes objects more visible and fills in small holes in
      * objects.
      */
@@ -328,7 +333,7 @@ public class Camera {
      * The value of the output pixel is the minimum value of all pixels in the
      * neighborhood. In a binary image, a pixel is set to 0 if any of the
      * neighboring pixels have the value 0.
-     * 
+     * <p>
      * Morphological erosion removes islands and small objects so that only
      * substantive objects remain.
      */

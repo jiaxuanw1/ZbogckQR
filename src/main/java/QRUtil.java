@@ -21,13 +21,11 @@ public class QRUtil {
         for (int x = 0; x < IMAGE_SIZE; x++) {
             for (int y = 0; y < IMAGE_SIZE; y++) {
                 // Black outer border
-                if (x < BLACK_BORDER || x >= IMAGE_SIZE - BLACK_BORDER || y < BLACK_BORDER
-                        || y >= IMAGE_SIZE - BLACK_BORDER) {
+                if (x < BLACK_BORDER || x >= IMAGE_SIZE - BLACK_BORDER || y < BLACK_BORDER || y >= IMAGE_SIZE - BLACK_BORDER) {
                     qrImage.setRGB(x, y, 0xFF000000);
                 }
                 // White inner border
-                else if (x < BORDER_SIZE || x >= IMAGE_SIZE - BORDER_SIZE || y < BORDER_SIZE
-                        || y >= IMAGE_SIZE - BORDER_SIZE) {
+                else if (x < BORDER_SIZE || x >= IMAGE_SIZE - BORDER_SIZE || y < BORDER_SIZE || y >= IMAGE_SIZE - BORDER_SIZE) {
                     qrImage.setRGB(x, y, 0xFFFFFFFF);
                 }
                 // Inside QR code

@@ -114,9 +114,9 @@ public class CameraDisplay {
         String text;
         try {
             text = QRUtil.decode(grid);
-        } catch (InvalidQRException e) {
+        } catch (InvalidQRException ex) {
             text = null;
-            System.out.println(e.getMessage());
+            System.out.println(ex.getMessage());
         }
         final String encryptedText = text;
         final String bitlyURL;
