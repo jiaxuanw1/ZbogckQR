@@ -38,7 +38,7 @@ public class CameraDisplay {
             System.out.println("Error setting system theme!");
         }
 
-        // Take Picture button
+        // Scan QR Code button
         JButton scanQRButton = new JButton("Scan QR Code!");
         scanQRButton.addActionListener((e) -> {
             try {

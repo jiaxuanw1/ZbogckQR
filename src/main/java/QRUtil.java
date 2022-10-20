@@ -21,11 +21,11 @@ public class QRUtil {
         for (int x = 0; x < IMAGE_SIZE; x++) {
             for (int y = 0; y < IMAGE_SIZE; y++) {
                 // Black outer border
-                if (x < BLACK_BORDER || x >= IMAGE_SIZE - BLACK_BORDER || y < BLACK_BORDER || y >= IMAGE_SIZE - BLACK_BORDER) {
+                if (Math.min(x, y) < BLACK_BORDER || Math.max(x, y) >= IMAGE_SIZE - BLACK_BORDER) {
                     qrImage.setRGB(x, y, 0xFF000000);
                 }
                 // White inner border
-                else if (x < BORDER_SIZE || x >= IMAGE_SIZE - BORDER_SIZE || y < BORDER_SIZE || y >= IMAGE_SIZE - BORDER_SIZE) {
+                else if (Math.min(x, y) < BORDER_SIZE || Math.max(x, y) >= IMAGE_SIZE - BORDER_SIZE) {
                     qrImage.setRGB(x, y, 0xFFFFFFFF);
                 }
                 // Inside QR code
@@ -52,10 +52,10 @@ public class QRUtil {
 
         for (int r = 0; r < grid.length; r++) {
             for (int c = 0; c < grid[r].length; c++) {
-                int x = c * (IMAGE_SIZE - BORDER_SIZE * 2) / 7 + ((IMAGE_SIZE - BORDER_SIZE * 2) / 14 + BORDER_SIZE);
-                int y = r * (IMAGE_SIZE - BORDER_SIZE * 2) / 7 + ((IMAGE_SIZE - BORDER_SIZE * 2) / 14 + BORDER_SIZE);
+                int x = (int) ((c + 0.5) * SQUARE_SIZE + BORDER_SIZE);
+                int y = (int) ((r + 0.5) * SQUARE_SIZE + BORDER_SIZE);
                 grid[r][c] = scaledImg.getRGB(x, y) == 0xFF000000;
-                scaledImg.setRGB(x, y, 0xFF00FFFF); // add dots... get rid of once finalized
+                scaledImg.setRGB(x, y, grid[r][c] ? 0xFF00FF00 : 0xFF004400); // add dots... get rid of once finalized
             }
         }
 
